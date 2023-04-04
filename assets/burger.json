@@ -1,0 +1,42 @@
+[
+    {
+        "title":"ดับเบิ้ลวอปเปอร์®ชีส",
+        "subtitle":"159 บาท",
+        "image_url":"assets/images/burger/BaconDoubleCheeseburger.png"
+    },
+    {
+        "title":"ดับเบิ้ล เบคอนชีส",
+        "subtitle":" 239 บาท",
+        "image_url":"assets/images/burger/BaconKing.png"
+    },
+    {
+        "title":" บิ๊กคิง ",
+        "subtitle":" 179 บาท",
+        "image_url":"assets/images/burger/BigKing.png"
+    },
+    {
+        "title":"ดับเบิ้ลวอปเปอร์®",
+        "subtitle":"259 บาท",
+        "image_url":"assets/images/burger/DoubleWhopper.png"
+    },
+    {
+        "title":"เบอร์เกอร์แซนวิช®เนื้อวัว",
+        "subtitle":" 189 บาท",
+        "image_url":"assets/images/burger/SingleQuarterPoundKing.png"
+    },
+    {
+        "title":"ดับเบิ้ลวอปเปอร์®ชีส",
+        "subtitle":" 239 บาท",
+        "image_url":"assets/images/burger/TexasDoubleWhopper.png"
+    },
+    {
+        "title":"ทิมเบิลวอปเปอร์®ชีส",
+        "subtitle":" 279 บาท",
+        "image_url":"assets/images/burger/TripleWhopper.png"
+    },
+    {
+        "title":"วอปเปอร์®จูเนียร์",
+        "subtitle":" 149 บาท",
+        "image_url":"assets/images/burger/WhopperJr.png"
+    }
+]

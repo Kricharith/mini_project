@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "116178758913",
+    "project_id": "burgerapp-f2bd2",
+    "storage_bucket": "burgerapp-f2bd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116178758913:android:b24164bdfe94ab7448bf00",
+        "android_client_info": {
+          "package_name": "com.example.mini_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116178758913-2vpb0bol0d7it91s67f6viuqo8qqh3tt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN9cf7gDQiKFZbWonWo49ySdMZRwZ8QbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116178758913-2vpb0bol0d7it91s67f6viuqo8qqh3tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

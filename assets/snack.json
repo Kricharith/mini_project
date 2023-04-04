@@ -1,0 +1,27 @@
+[
+    {
+        "title":"applepie",
+        "subtitle":"59 บาท",
+        "image_url":"assets/images/snack/applepie.png"
+    },
+    {
+        "title":"Hashbrowns",
+        "subtitle":"89 บาท",
+        "image_url":"assets/images/snack/Hashbrowns.png"
+    },
+    {   "title":"MozzarellaSticks",
+        "subtitle":"89 บาท",
+        "image_url":"assets/images/snack/MozzarellaSticks.png"
+    },
+    {
+        "title":"saltchicken",
+        "subtitle":"79 บาท",
+        "image_url":"assets/images/snack/saltchicken.png"
+    },
+    {
+        "title":"TaroCornPie",
+        "subtitle":"59 บาท",
+        "image_url":"assets/images/snack/TaroCornPie.png"
+    }
+        
+]
