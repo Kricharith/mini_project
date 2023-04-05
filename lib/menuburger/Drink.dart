@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class Drink extends StatefulWidget {
   //const Drink({Key? key}) : super(key: key);
@@ -66,23 +68,24 @@ class _DrinkState extends State<Drink> {
         child: Padding(
           padding: EdgeInsets.all(10),
           child: FutureBuilder(
-            builder: (context, snapshot) {
+            builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                var data = json.decode(snapshot.data.toString());
-                print(data.length);
                 return ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
-                    return MyBox(data[index]['title'], data[index]['subtitle'],
-                        data[index]['image_url'], index, data[index]);
+                    return MyBox(
+                        snapshot.data[index]['title'],
+                        snapshot.data[index]['subtitle'],
+                        snapshot.data[index]['image_url'],
+                        index,
+                        snapshot.data[index]);
                   },
-                  itemCount: data.length,
+                  itemCount: snapshot.data.length,
                 );
               } else {
                 return Container();
               }
             },
-            future:
-                DefaultAssetBundle.of(context).loadString('assets/drink.json'),
+            future: getdata(),
           ),
         ),
       ),
@@ -92,20 +95,9 @@ class _DrinkState extends State<Drink> {
   Widget MyBox(String title, String subtitle, String image_uil, int index,
       dynamic data) {
     return Container(
-      /*  margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.only(left: 20, right: 20),
-      height: 150,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(
-            image: NetworkImage(image_uil),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.45), BlendMode.darken),
-          )),*/
       child: Column(
         children: [
-          Image.asset(
+          Image.network(
             image_uil,
             width: 200,
             height: 200,
@@ -165,7 +157,7 @@ class _DrinkState extends State<Drink> {
                                     data['title'],
                                     style: TextStyle(fontSize: 20),
                                   ),
-                                  Image.asset(
+                                  Image.network(
                                     data['image_url'],
                                     height: 100,
                                     width: 100,
@@ -244,5 +236,15 @@ class _DrinkState extends State<Drink> {
         ],
       ),
     );
+  }
+
+  Future getdata() async {
+    https: //raw.githubusercontent.com/Kricharith/BurgerAPI/main/drink.json
+    var url = Uri.https(
+        'raw.githubusercontent.com', '/Kricharith/BurgerAPI/main/drink.json');
+    var response = await http.get(url);
+    var result = json.decode(response.body);
+    print(result);
+    return result;
   }
 }

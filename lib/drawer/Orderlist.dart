@@ -109,7 +109,7 @@ class _OrderListState extends State<OrderList> {
                       ),
                       Row(
                         children: [
-                          Image.asset(
+                          Image.network(
                             _order!['image_url'].toString(),
                             height: 100,
                             width: 100,

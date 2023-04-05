@@ -86,10 +86,10 @@ class _RegisterPageState extends State<RegisterPage> {
         user.user!.sendEmailVerification().then((value) async {
           Map<String, dynamic> data = {
             'username': _username.text,
-            'firstname': 'User firstname',
-            'lastname': 'User lastname',
+            'firstname': '',
+            'lastname': '',
             'email': email.text,
-            'address': 'User address',
+            'address': '',
             'tel': _tel.text,
             'urlprofile':
                 'https://icons.veryicon.com/png/o/miscellaneous/management-system-icon-library/person-15.png',

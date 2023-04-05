@@ -206,7 +206,7 @@ class _BasketState extends State<Basket> {
                 ),
                 Row(
                   children: [
-                    Image.asset(
+                    Image.network(
                       _order!['image_url'].toString(),
                       height: 100,
                       width: 100,
@@ -249,7 +249,7 @@ class _BasketState extends State<Basket> {
                                                   style:
                                                       TextStyle(fontSize: 20),
                                                 ),
-                                                Image.asset(
+                                                Image.network(
                                                   _order['image_url'],
                                                   height: 100,
                                                   width: 100,

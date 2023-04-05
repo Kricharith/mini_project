@@ -64,7 +64,8 @@ class _OrderState extends State<Order> {
                                   size: 30,
                                 ),
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigator.popAndPushNamed(
+                                      context, '/homepage');
                                 },
                               ),
                             ],

@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class Burger extends StatefulWidget {
   const Burger({Key? key}) : super(key: key);
@@ -69,37 +71,40 @@ class _BurgerState extends State<Burger> {
         child: Padding(
           padding: EdgeInsets.all(10),
           child: FutureBuilder(
-            builder: (context, snapshot) {
+            builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                var data = json.decode(snapshot.data.toString());
-                print(data.length);
                 return ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
                     //print(data[index]);
-                    return MyBox(data[index]['title'], data[index]['subtitle'],
-                        data[index]['image_url'], index, data[index]);
+                    return MyBox(
+                        snapshot.data[index]['title'],
+                        snapshot.data[index]['subtitle'],
+                        snapshot.data[index]['image_url'],
+                        index,
+                        snapshot.data[index]);
                   },
-                  itemCount: data.length,
+                  itemCount: snapshot.data.length,
                 );
               } else {
                 return Container();
               }
             },
-            future:
-                DefaultAssetBundle.of(context).loadString('assets/burger.json'),
+            future: getdata(),
+            // future:
+            //     DefaultAssetBundle.of(context).loadString('assets/burger.json'),
           ),
         ),
       ),
     );
   }
 
-  Widget MyBox(String title, String subtitle, String image_uil, int index,
+  Widget MyBox(String title, String subtitle, String image_url, int index,
       dynamic data) {
     return Container(
       child: Column(
         children: [
-          Image.asset(
-            image_uil,
+          Image.network(
+            image_url,
             width: 200,
             height: 200,
             fit: BoxFit.fill,
@@ -158,7 +163,7 @@ class _BurgerState extends State<Burger> {
                                     data['title'],
                                     style: TextStyle(fontSize: 20),
                                   ),
-                                  Image.asset(
+                                  Image.network(
                                     data['image_url'],
                                     height: 100,
                                     width: 100,
@@ -237,5 +242,15 @@ class _BurgerState extends State<Burger> {
         ],
       ),
     );
+  }
+
+  Future getdata() async {
+    //https://raw.githubusercontent.com/Kricharith/BurgerAPI/main/burger.json
+    var url = Uri.https(
+        'raw.githubusercontent.com', '/Kricharith/BurgerAPI/main/burger.json');
+    var response = await http.get(url);
+    var result = json.decode(response.body);
+    print(result);
+    return result;
   }
 }
