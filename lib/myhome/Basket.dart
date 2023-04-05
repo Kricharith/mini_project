@@ -100,21 +100,19 @@ class _BasketState extends State<Basket> {
                   ],
                 ),
               ),
-              body:
-                  //Container(
-                  // decoration: BoxDecoration(
-                  //     gradient: LinearGradient(colors: [
-                  //   Colors.red.shade200,
-                  //   Colors.red.shade100,
-                  //   Colors.red.shade300,
-                  // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-                  snapshot.hasData
-                      ? buildOrderList(snapshot.data!, modelpovider)
-                      : const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-              // ),
-
+              body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Colors.red.shade200,
+                  Colors.red.shade100,
+                  Colors.red.shade300,
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                child: snapshot.hasData
+                    ? buildOrderList(snapshot.data!, modelpovider)
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+              ),
               bottomNavigationBar: BottomAppBar(
                   color: Color.fromARGB(255, 188, 188, 188),
                   child: Container(

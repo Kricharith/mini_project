@@ -31,7 +31,7 @@ class _DrinkState extends State<Drink> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 70,
+                    height: 35,
                   ),
                   Text(
                     "MENU",

@@ -26,7 +26,7 @@ class _HomepageState extends State<Contact> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 60,
+                    height: 35,
                   ),
                   Text(
                     "ติดต่อเรา",

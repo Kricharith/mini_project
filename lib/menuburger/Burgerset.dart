@@ -32,7 +32,7 @@ class _BurgerState extends State<Burgerset> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 70,
+                    height: 35,
                   ),
                   Text(
                     "MENU",

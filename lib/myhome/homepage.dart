@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:mini_project/index.dart';
 import 'package:mini_project/index.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class Homepage extends StatefulWidget {
   //const Homepage({Key? key}) : super(key: key);
@@ -14,6 +17,38 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  Map image_url = {
+    0: {
+      "image_url":
+          "https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMzA5LWFkai0wMS5qcGc.jpg",
+    },
+    1: {
+      "image_url":
+          "https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMzA5LWFkai0wMS5qcGc.jpg",
+    },
+    2: {
+      "image_url":
+          "https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMzA5LWFkai0wMS5qcGc.jpg",
+    },
+    3: {
+      "image_url":
+          "https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMzA5LWFkai0wMS5qcGc.jpg",
+    },
+    4: {
+      "image_url":
+          "https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMzA5LWFkai0wMS5qcGc.jpg",
+    },
+    5: {
+      "image_url":
+          "https://images.rawpixel.com/image_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMzA5LWFkai0wMS5qcGc.jpg",
+    }
+  };
+  void initState() {
+    getdata();
+    super.initState();
+  }
+
+  var listimage = [];
   final _auth = FirebaseAuth.instance.currentUser!;
   final auth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
@@ -89,6 +124,7 @@ class _HomepageState extends State<Homepage> {
               ),
               child: Column(
                 children: [
+                  //getjson(context),
                   Image_list(),
                   SizedBox(height: 65),
                   Row(
@@ -250,57 +286,53 @@ class _HomepageState extends State<Homepage> {
 
   Widget Image_list() {
     return ImageSlideshow(
-      /// Width of the [ImageSlideshow].
       width: double.infinity,
-
-      /// Height of the [ImageSlideshow].
-      height: 210,
-
-      /// The page to show when first creating the [ImageSlideshow].
       initialPage: 0,
-
-      /// The color to paint the indicator.
       indicatorColor: Colors.blue,
-
-      /// The color to paint behind th indicator.
       indicatorBackgroundColor: Colors.grey,
-
-      /// The widgets to display in the [ImageSlideshow].
-      /// Add the sample image file into the images folder
       children: [
-        Image.asset(
-          'assets/images/promotion/1.png',
+        Image.network(
+          image_url[0]['image_url'],
           fit: BoxFit.fill,
         ),
-        Image.asset(
-          'assets/images/promotion/2.png',
+        Image.network(
+          image_url![1]['image_url'],
           fit: BoxFit.fill,
         ),
-        Image.asset(
-          'assets/images/promotion/3.png',
+        Image.network(
+          image_url![2]['image_url'],
           fit: BoxFit.fill,
         ),
-        Image.asset(
-          'assets/images/promotion/4.png',
+        Image.network(
+          image_url![3]['image_url'],
           fit: BoxFit.fill,
         ),
-        Image.asset(
-          'assets/images/promotion/5.png',
+        Image.network(
+          image_url![4]['image_url'],
           fit: BoxFit.fill,
         ),
       ],
-
-      /// Called whenever the page in the center of the viewport changes.
-      onPageChanged: (value) {
-        //print('Page changed: $value');
-      },
-
-      /// Auto scroll interval.
-      /// Do not auto scroll with null or 0.
-      autoPlayInterval: 3000,
-
-      /// Loops back to first slide.
+      onPageChanged: (value) {},
+      autoPlayInterval: 5000,
       isLoop: true,
     );
+  }
+
+  Future getdata() async {
+    //https://raw.githubusercontent.com/Kricharith/BurgerAPI/main/pomotion.json
+    var url = Uri.https('raw.githubusercontent.com',
+        '/Kricharith/BurgerAPI/main/pomotion.json');
+    var response = await http.get(url);
+    var result = json.decode(response.body);
+    setState(() {
+      image_url[0] = result[0];
+      image_url[1] = result[1];
+      image_url[2] = result[2];
+      image_url[3] = result[3];
+      image_url[4] = result[4];
+    });
+
+    print(image_url);
+    return result;
   }
 }
